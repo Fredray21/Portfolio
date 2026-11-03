@@ -55,7 +55,7 @@ jobs:
           envs: IMAGE
           script: |
             set -e
-            docker pull "$IMAGE"
+            DOCKER_CONFIG="$(mktemp -d)" docker pull "$IMAGE"
             docker stop portfolio || true
             docker rm portfolio || true
             docker run -d \
