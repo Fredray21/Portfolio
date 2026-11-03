@@ -1,184 +1,288 @@
 #block1 {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
-    width: fit-content;
-    overflow: hidden;
-
+    isolation: isolate;
+    height: 100%;
+    color: #fff;
     z-index: 2;
+}
+
+#block1::before {
+    background: var(--purple);
+    clip-path: shape(from 350px 0,
+            hline to calc(100% - 25px),
+            arc by 25px 25px of 25px cw,
+            vline to calc(100% - 175px),
+            arc by -25px 25px of 25px cw,
+            hline to calc(100% - 315px),
+            arc by -25px 25px of 25px ccw,
+            vline to calc(100% - 25px),
+            arc by -25px 25px of 25px cw,
+            hline to 25px,
+            arc by -25px -25px of 25px cw,
+            vline to 75px,
+            arc by 25px -25px of 25px cw,
+            hline to 300px,
+            arc by 25px -25px of 25px ccw,
+            arc by 25px -25px of 25px cw,
+            close);
 }
 
 #block1 .block1-title {
     position: absolute;
-    font-size: 40px;
-    color: #fff;
-    top: 1.1em;
-    right: 1.2em;
+    top: 0;
+    left: 325px;
+    right: 0;
+    height: 155px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(32px, 3.8vw, 40px);
     font-weight: bold;
+    text-align: center;
 }
 
 #block1 .block1-button {
     position: absolute;
-    font-size: 16px;
-    background-color: rgba(101, 77, 100, 0.8);
-    border: 0;
-    border-radius: 10px;
-    width: 284px;
-    height: 53px;
-    color: #fff;
     top: 73px;
     left: 23px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    width: 284px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
     font-weight: bold;
-    pointer-events: all;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(101, 77, 100, 0.8);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 #block1 .block1-button:hover {
-    background-color: rgba(101, 77, 100, 1);
-    cursor: pointer;
+    background-color: var(--plum);
     transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
 }
 
 #block1 .block1-me_name {
     position: absolute;
-    font-size: 36px;
-    color: #fff;
     top: 153px;
     left: 27px;
+    font-size: 36px;
+    line-height: 1.5;
     font-weight: bold;
-}
-
-
-#block1 .block1-container-me_image {
-    position: absolute;
-    width: 142px;
-    height: 149px;
-    top: 156px;
-    left: 405px;
-    border-radius: 0 0 25px 0;
-    overflow: hidden;
-}
-
-#block1 .block1-me_image {
-    width: 176px;
-    height: 176px;
-    border-radius: 100%;
-    object-fit: cover;
-    border: solid 4px #FD9AFB;
 }
 
 #block1 .block1-me_sub {
     position: absolute;
+    top: 207px;
+    left: 27px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    top: 207px;
-    left: 27px;
-
     font-size: 16px;
-    color: #fff;
     font-weight: 500;
 }
 
-#block1 .block1-me_sub .block1-me_sub_div {
+#block1 .block1-me_sub_div {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-#block1 .block1-me_sub .block1-me_sub_div svg {
+#block1 .block1-me_sub_div svg {
+    flex-shrink: 0;
     width: 21px;
     height: 21px;
-    fill: white;
 }
 
-/* ================================== MOBILE STYLES ================================== */
-@media (max-width: 900px) {
+#block1 .block1-container-me_image {
+    position: absolute;
+    right: 340px;
+    bottom: 0;
+    width: 142px;
+    height: 149px;
+    border-radius: 0 0 25px 0;
+    overflow: hidden;
+}
+
+#block1 .block1-me_image {
+    display: block;
+    width: 176px;
+    height: 176px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: solid 4px var(--pink);
+}
+
+/* ================================== TABLET STYLES ================================== */
+@media (max-width: 959.98px) {
     #block1 {
-        width: 100%;
+        height: auto;
+        min-height: 300px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "title title"
+            "name image"
+            "sub image"
+            "button image";
+        column-gap: 20px;
+        align-content: start;
+        padding: 14px 28px 28px;
     }
 
-    #block1 #burger {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        cursor: pointer;
+    #block1::before {
+        clip-path: shape(from 350px 0,
+                hline to calc(100% - 25px),
+                arc by 25px 25px of 25px cw,
+                vline to calc(100% - 25px),
+                arc by -25px 25px of 25px cw,
+                hline to 25px,
+                arc by -25px -25px of 25px cw,
+                vline to 75px,
+                arc by 25px -25px of 25px cw,
+                hline to 300px,
+                arc by 25px -25px of 25px ccw,
+                arc by 25px -25px of 25px cw,
+                close);
+    }
 
-        width: 9%;
+    #block1 .block1-title,
+    #block1 .block1-button,
+    #block1 .block1-me_name,
+    #block1 .block1-me_sub,
+    #block1 .block1-container-me_image {
+        position: static;
+    }
+
+    #block1 .block1-title {
+        grid-area: title;
         height: auto;
+        min-height: 66px;
+        margin-left: 310px;
+        margin-bottom: 14px;
+        justify-content: flex-end;
+        font-size: clamp(20px, 3.8vw, 32px);
+        line-height: 1.2;
+        text-align: right;
     }
 
     #block1 .block1-me_name {
-        font-size: 6vw;
-        top: 0;
-        left: 5%;
-
-        height: 30%;
-        width: 80%;
-        display: flex;
-        align-items: center;
-    }
-
-    #block1 .block1-button {
-        font-size: 3.5vw;
-        width: 53%;
-        height: 20%;
-
-        top: auto;
-        left: auto;
-        bottom: 7%;
-        right: 4%;
-
-        border-radius: 2.5vw;
-    }
-
-    #block1 .block1-container-me_image {
-        width: 30vw;
-        height: 30vw;
-
-        top: auto;
-        left: 0;
-        bottom: 0;
-
-        border-radius: 6.25vw;
-    }
-
-    #block1 .block1-container-me_image img {
-        width: 100%;
-        height: 100%;
-        border-radius: 6.25vw;
-        border: solid 1vw #FD9AFB;
+        grid-area: name;
+        font-size: clamp(28px, 5vw, 36px);
+        line-height: 1.2;
+        margin-bottom: 12px;
     }
 
     #block1 .block1-me_sub {
-        top: auto;
-        left: auto;
-        bottom: 32%;
-        right: 4%;
-        width: 53%;
-        gap: 1.5vw;
-        font-size: 3.5vw;
+        grid-area: sub;
+        margin-bottom: 18px;
     }
 
-    #block1 .block1-me_sub .block1-me_sub_div svg {
-        width: 5.25vw;
-        height: 5.25vw;
+    #block1 .block1-button {
+        grid-area: button;
+        width: min(284px, 100%);
+    }
+
+    #block1 .block1-container-me_image {
+        grid-area: image;
+        align-self: end;
+        width: clamp(150px, 26vw, 190px);
+        height: clamp(150px, 26vw, 190px);
+        border-radius: 100%;
+    }
+
+    #block1 .block1-me_image {
+        width: 100%;
+        height: 100%;
     }
 }
 
-@media (max-width: 320px) {
-    #block1 .block1-me_sub span {
-        font-size: 3vw;
-        display: inline-block;
-        max-width: 100%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+/* ================================== MOBILE STYLES ================================== */
+@media (max-width: 639.98px) {
+    #block1 {
+        --photo: 37%;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 10px 0 14px calc(var(--photo) + 12px);
+    }
+
+    #block1::before {
+        clip-path: shape(from 25px 0,
+                hline to calc(100% - 70px),
+                arc by 25px 25px of 25px cw,
+                arc by 25px 25px of 25px ccw,
+                hline to calc(100% - 25px),
+                arc by 25px 25px of 25px cw,
+                vline to calc(100% - 25px),
+                arc by -25px 25px of 25px cw,
+                hline to calc(var(--photo) + 25px),
+                arc by -25px -25px of 25px cw,
+                vline to 104px,
+                arc by -25px -25px of 25px ccw,
+                hline to 25px,
+                arc by -25px -25px of 25px cw,
+                vline to 25px,
+                arc by 25px -25px of 25px cw,
+                close);
+    }
+
+    #block1 .block1-me_name {
+        position: absolute;
+        top: 10px;
+        left: 16px;
+        right: 54px;
+        margin: 0;
+        font-size: clamp(19px, 6.4vw, 30px);
+    }
+
+    #block1 .block1-title {
+        position: absolute;
+        top: calc(14px + clamp(23px, 7.7vw, 36px));
+        left: 16px;
+        right: 54px;
+        height: auto;
+        min-height: 0;
+        margin: 0;
+        justify-content: flex-start;
+        font-size: clamp(13px, 3.8vw, 18px);
+        font-weight: 600;
+    }
+
+    #block1 .block1-me_sub {
+        margin: 80px 0 12px;
+        gap: 6px;
+        font-size: clamp(13px, 3.7vw, 16px);
+        padding-right: 12px;
+    }
+
+    #block1 .block1-me_sub_div svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    #block1 .block1-button {
+        order: 1;
+        flex-shrink: 0;
+        width: calc(100% - 14px);
+        height: 46px;
+        font-size: 15px;
+    }
+
+    #block1 .block1-container-me_image {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        top: 92px;
+        align-self: stretch;
+        width: calc(var(--photo) - 12px);
+        height: auto;
+        border-radius: 25px;
+    }
+
+    #block1 .block1-me_image {
+        border-radius: 25px;
     }
 }
-/* =================================================================================== */

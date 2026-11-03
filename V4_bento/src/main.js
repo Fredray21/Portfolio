@@ -1,20 +1,23 @@
-
+import initProjects from './scripts/projects.js';
+import initCarousel from './scripts/carousel.js';
 import initMusicBlock from './scripts/music.js';
-import initAnimation from './scripts/animation.js';
+import initNav from './scripts/nav.js';
+import initContact from './scripts/contact.js';
+import initRouter from './scripts/router.js';
+import revealView from './scripts/animation.js';
 import initMotions from './scripts/motion.js';
 import initCommitHash from './scripts/github.js';
-import initCarousel from './scripts/carousel.js';
 
+initProjects();
 initCarousel();
-initCommitHash();
 initMusicBlock();
-initAnimation();
+initNav();
+initContact();
 initMotions();
+initRouter(revealView);
+initCommitHash();
 
-const DOM_ages = document.querySelectorAll('.age');
+const BIRTH_DATE = Date.UTC(2002, 3, 21);
 
-if(DOM_ages.length > 0) {
-    DOM_ages.forEach((DOM_age) => {
-        DOM_age.textContent = new Date(+new Date - 1019347200000).getUTCFullYear() - 1970 + ' ans';
-    });
-}
+document.querySelector('.age').textContent = `${new Date(Date.now() - BIRTH_DATE).getUTCFullYear() - 1970} ans`;
+document.querySelector('.year').textContent = new Date().getFullYear();

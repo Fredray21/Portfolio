@@ -1,26 +1,22 @@
 #block3 {
     position: relative;
-    height: 365px;
-    width: 330px;
-    left: 0;
-    top: 0;
-    background-color: #FD9AFB;
-    border-radius: 25px;
-    color: #312531;
-    padding: 15px 15px 5px 15px;
+    isolation: isolate;
+    min-height: 370px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+    color: var(--ink);
+    background-color: var(--pink);
+    border-radius: 25px;
 }
 
 #block3 .block3-title {
-    font-size: 24px;
     display: flex;
     align-items: center;
     gap: 5px;
-
     margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 #block3 .block3-title svg {
@@ -28,124 +24,84 @@
     height: 24px;
 }
 
-#block3 .block3-title span {
-    font-size: 16px;
-    font-weight: 600;
-}
-
 #block3 .block3-content {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
 }
 
-#block3 .block3-content .block3-content-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-
-#block3 .block3-content .block3-content-item .block3-content-item-title {
-    font-weight: bold;
+#block3 .block3-content-item-title {
+    margin-bottom: 5px;
     font-size: 15px;
+    font-weight: bold;
 }
 
-#block3 .block3-content .block3-content-item .block3-content-item-text {
-    font-weight: 400;
+#block3 .block3-content-item-text {
     font-size: 14px;
 }
 
-#block3 .block3-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    gap: 5px;
-
-    width: 100%;
+#block3 .block3-content-item-text::before {
+    content: "> ";
 }
 
-#block3 .block3-footer .bold {
-    font-weight: bold;
-}
-
-#block3 .block3-footer a {
+#block3 .block3-more {
+    align-self: flex-end;
+    font-size: 13px;
+    font-weight: 600;
     color: inherit;
-    text-decoration: none;
 }
 
-
-#block3 .block3-footer a:hover {
-    text-decoration: underline;
+#block3 .block3-more:hover {
+    color: #fff;
 }
 
-
-
-
-/* ================================== MOBILE STYLES ================================== */
-@media (max-width: 900px) {
+/* ================================== TABLET STYLES ================================== */
+@media (max-width: 959.98px) {
     #block3 {
-        width: 100%;
-        height: auto;
-        background: none;
-        border: none;
-        padding: 0;
-        position: relative;
-        margin-top: 5vw;
+        min-height: 0;
     }
 
+    #block3 .block3-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 16px;
+    }
+}
+
+/* ================================== MOBILE STYLES ================================== */
+@media (max-width: 639.98px) {
+    #block3 {
+        padding: 66px 16px 16px;
+        background: none;
+    }
+
+    #block3::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: var(--pink);
+        border-radius: 25px;
+        clip-path: shape(from 25px 0,
+                hline to 195px,
+                arc by 25px 25px of 25px cw,
+                arc by 25px 25px of 25px ccw,
+                hline to calc(100% - 25px),
+                arc by 25px 25px of 25px cw,
+                vline to calc(100% - 25px),
+                arc by -25px 25px of 25px cw,
+                hline to 25px,
+                arc by -25px -25px of 25px cw,
+                vline to 25px,
+                arc by 25px -25px of 25px cw,
+                close);
+    }
 
     #block3 .block3-title {
         position: absolute;
-        left: 3.75vw;
-        top: 3vw;
-        gap: 1.25vw;
-    }
-
-    #block3 .block3-title svg {
-        width: 6vw;
-        height: 6vw;
-    }
-
-    #block3 .block3-title span {
-        font-size: 4vw;
-    }
-
-    #block3 .block3-content {
-        position: absolute;
-        top: 13.5vw;
-        left: 3.75vw;
-    }
-
-
-    #block3 .block3-content {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    #block3 .block3-content .block3-content-item {
-        gap: 1.25vw;
-    }
-
-
-    #block3 .block3-content .block3-content-item .block3-content-item-title {
-        font-size: 3.75vw;
-    }
-
-    #block3 .block3-content .block3-content-item .block3-content-item-text {
-        font-size: 3.5vw;
-    }
-
-
-    #block3 .block3-footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 10vw;
-        font-size: 3vw;
+        top: 12px;
+        left: 16px;
+        margin: 0;
     }
 }

@@ -1,20 +1,22 @@
-const { animate } = await import('@motionone/dom');
+import { animate } from '@motionone/dom';
 
-export default async function initMotions() {
+export default function initMotions() {
+    const canHover = window.matchMedia('(hover: hover) and (min-width: 960px) and (prefers-reduced-motion: no-preference)');
 
     const hoverEffects = {
-        "#block1": { scale: 1.05, x: 10, rotateZ: -1.5 },
+        "#block1": { scale: 1.02, rotateZ: -0.5 },
         "#block2": { scale: 1.03, rotateZ: 2 },
-        "#block3": { scale: 1.08, rotateY: 5 },
-        "#block4": { scale: 1.04, y: -4 },
+        "#block3": { scale: 1.03, rotateY: 5 },
+        "#block4": { scale: 1.02, y: -4 },
         "#block5": { scale: 1.04, rotateZ: -2 },
         "#block6": { scale: 1.1, rotateZ: -2, x: 4 },
     };
 
     for (const [selector, effect] of Object.entries(hoverEffects)) {
-        const el = document.querySelector(`.desktop-only ${selector}`);
+        const el = document.querySelector(selector);
 
         el.addEventListener("mouseenter", () => {
+            if (!canHover.matches) return;
             animate(el, effect, {
                 duration: 0.3,
                 easing: "ease-out"
@@ -22,11 +24,10 @@ export default async function initMotions() {
         });
 
         el.addEventListener("mouseleave", () => {
-            // Revenir à l'état normal
+            if (!canHover.matches) return;
             const reset = {};
             for (const prop in effect) {
-                reset[prop] = 0; // sauf scale
-                if (prop === "scale") reset[prop] = 1;
+                reset[prop] = prop === "scale" ? 1 : 0;
             }
 
             animate(el, reset, {
@@ -34,24 +35,5 @@ export default async function initMotions() {
                 easing: "ease-out"
             });
         });
-    };
-
-    // Animation des liens
-    const nav = document.querySelector('#nav');
-    const block1 = document.querySelector('#block1');
-
-    nav.addEventListener('mouseenter', () => {
-        animate(block1, { x: 15 }, {
-            duration: 0.4,
-            easing: 'ease-out',
-        });
-    });
-
-    nav.addEventListener('mouseleave', () => {
-        animate(block1, { x: 0 }, {
-            duration: 0.4,
-            easing: 'ease-out',
-        });
-    });
-
+    }
 }

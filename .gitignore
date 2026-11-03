@@ -28,3 +28,6 @@ V2/*.sw?
 
 V3-glass/duolingo/*
 
+
+V4_bento/node_modules
+V4_bento/dist
