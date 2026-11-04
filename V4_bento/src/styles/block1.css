@@ -3,7 +3,7 @@
     isolation: isolate;
     height: 100%;
     color: #fff;
-    z-index: 2;
+    z-index: 1;
 }
 
 #block1::before {

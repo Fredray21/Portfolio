@@ -155,6 +155,7 @@
         inset: auto;
         height: 262px;
         margin-top: -40px;
+        z-index: 1;
     }
 
     #block4::before {

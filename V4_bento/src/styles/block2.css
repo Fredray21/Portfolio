@@ -11,7 +11,7 @@
     color: var(--ink);
     background-color: var(--pink);
     border-radius: 10px 25px 25px 25px;
-    z-index: 1;
+    z-index: 2;
 }
 
 #block2 .block2-title {

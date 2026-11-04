@@ -69,6 +69,7 @@
         width: 100%;
         height: auto;
         margin-top: -30px;
+        z-index: 0;
         padding: 64px 16px 18px;
     }
 
