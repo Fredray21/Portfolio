@@ -1,5 +1,5 @@
 # Étape 1 : build avec Vite
-FROM node:20 AS builder
+FROM node:24 AS builder
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ RUN npm install
 RUN npm run build
 
 # Étape 2 : serveur avec http-server
-FROM node:20
+FROM node:24
 
 WORKDIR /app
 
@@ -23,4 +23,4 @@ COPY --from=builder /app/V4_bento/dist /app
 
 EXPOSE 5000
 
-CMD ["http-server", "-p", "5000", "."]
+CMD ["http-server", "-p", "5000", "-c-1", "."]
